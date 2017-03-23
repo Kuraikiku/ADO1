@@ -66,8 +66,38 @@ namespace ado
         {
             while(reader.Read())
             {
-                listBoxAusgabe.Items.Add(reader["ArtikelOid"].ToString() + " °^° " + reader["Bezeichnung"].ToString());
+
+                listBoxAusgabe.Items.Add(mkArtikelObject(reader));
+                //listBoxAusgabe.Items.Add(reader["ArtikelOid"].ToString() + " °^° " + reader["Bezeichnung"].ToString());
             }
+        }
+
+        private Artikel mkArtikelObject(OleDbDataReader reader)
+        {
+            Artikel a = new Artikel();
+            int i = 0;
+
+            a.ArtikelOid = Convert.ToInt32(reader[i++]);
+            if (reader[i] == DBNull.Value) { a.ArtikelNr = 0; i++; }
+            else
+            {
+                a.ArtikelNr = Convert.ToInt32(reader[i++]);
+            }
+            a.ArtikelGruppe = Convert.ToInt32(reader[i++]);
+            a.Bezeichnung = Convert.ToString(reader[i++]);
+            a.Bestand = Convert.ToInt16(reader[i++]);
+            a.Meldebestand = Convert.ToInt16(reader[i++]);
+            a.Verpackung = Convert.ToInt32(reader[i++]);
+            a. VkPreis = Convert.ToDecimal(reader[i++]);
+            if (reader[i] != DBNull.Value)
+            {
+
+                a.LetzeEntnahme = Convert.ToDateTime(reader[i++]);
+            }
+            else
+            { i++; }
+            
+            return a;
         }
     }
 }
