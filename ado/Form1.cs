@@ -55,7 +55,7 @@ namespace ado
 
                 MessageBox.Show(ex.Message,"Omgush",MessageBoxButtons.OK,MessageBoxIcon.Warning);
             }
-            buttonAuslesen.Enabled = true; ;
+            buttonAuslesen.Enabled = true;
             
         }
 
