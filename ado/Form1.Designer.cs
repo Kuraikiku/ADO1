@@ -32,6 +32,8 @@
             this.buttonSql = new System.Windows.Forms.Button();
             this.buttonAuslesen = new System.Windows.Forms.Button();
             this.listBoxAusgabe = new System.Windows.Forms.ListBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxGruppe = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonConn
@@ -69,16 +71,34 @@
             // listBoxAusgabe
             // 
             this.listBoxAusgabe.FormattingEnabled = true;
-            this.listBoxAusgabe.Location = new System.Drawing.Point(25, 139);
+            this.listBoxAusgabe.Location = new System.Drawing.Point(25, 166);
             this.listBoxAusgabe.Name = "listBoxAusgabe";
             this.listBoxAusgabe.Size = new System.Drawing.Size(208, 186);
             this.listBoxAusgabe.TabIndex = 3;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 134);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(69, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Artikelgruppe";
+            // 
+            // textBoxGruppe
+            // 
+            this.textBoxGruppe.Location = new System.Drawing.Point(105, 134);
+            this.textBoxGruppe.Name = "textBoxGruppe";
+            this.textBoxGruppe.Size = new System.Drawing.Size(128, 20);
+            this.textBoxGruppe.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 346);
+            this.ClientSize = new System.Drawing.Size(260, 365);
+            this.Controls.Add(this.textBoxGruppe);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxAusgabe);
             this.Controls.Add(this.buttonAuslesen);
             this.Controls.Add(this.buttonSql);
@@ -86,6 +106,7 @@
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -95,6 +116,8 @@
         private System.Windows.Forms.Button buttonSql;
         private System.Windows.Forms.Button buttonAuslesen;
         private System.Windows.Forms.ListBox listBoxAusgabe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxGruppe;
     }
 }
 

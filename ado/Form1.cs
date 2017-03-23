@@ -24,10 +24,10 @@ namespace ado
 
         private void buttonConn_Click(object sender, EventArgs e)
         {
-            OleDbConnectionStringBuilder bldr = new OleDbConnectionStringBuilder();
+            /*OleDbConnectionStringBuilder bldr = new OleDbConnectionStringBuilder();
             bldr.Provider = "Microsoft.ACE.OLEDB.12.0";
-            bldr.DataSource = "Bestellung.accdb";
-            con = new OleDbConnection(bldr.ConnectionString);
+            bldr.DataSource = "Bestellung.accdb";*/
+            con = new OleDbConnection(Properties.Settings.Default.DBC);
             try
             {
                 con.Open();
@@ -44,10 +44,13 @@ namespace ado
         private void buttonSql_Click(object sender, EventArgs e)
         {
             cmd = con.CreateCommand();
-            cmd.CommandText = "Select * from tArtikel";
+            cmd.Parameters.Add("AGR", OleDbType.Integer);
+            listBoxAusgabe.Items.Clear();
+            cmd.CommandText = "Select * from tArtikel where ArtikelGruppe = AGR";
             cmd.CommandType = CommandType.Text;
             try
             {
+                cmd.Parameters["AGR"].Value = textBoxGruppe.Text; 
                 reader = cmd.ExecuteReader();
             }
             catch (Exception ex)
