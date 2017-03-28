@@ -39,6 +39,7 @@ namespace ado
             
             buttonSql.Enabled = true;
             buttonConn.Enabled = false;
+            buttonNew.Enabled = true;
         }
 
         private void buttonSql_Click(object sender, EventArgs e)
@@ -68,6 +69,7 @@ namespace ado
             {
 
                 listBoxAusgabe.Items.Add(mkArtikelObject(reader));
+                listBoxAusgabe.DisplayMember = "Display";
                 //listBoxAusgabe.Items.Add(reader["ArtikelOid"].ToString() + " °^° " + reader["Bezeichnung"].ToString());
             }
         }
@@ -78,26 +80,33 @@ namespace ado
             int i = 0;
 
             a.ArtikelOid = Convert.ToInt32(reader[i++]);
-            if (reader[i] == DBNull.Value) { a.ArtikelNr = 0; i++; }
-            else
-            {
-                a.ArtikelNr = Convert.ToInt32(reader[i++]);
-            }
-            a.ArtikelGruppe = Convert.ToInt32(reader[i++]);
-            a.Bezeichnung = Convert.ToString(reader[i++]);
-            a.Bestand = Convert.ToInt16(reader[i++]);
-            a.Meldebestand = Convert.ToInt16(reader[i++]);
-            a.Verpackung = Convert.ToInt32(reader[i++]);
-            a. VkPreis = Convert.ToDecimal(reader[i++]);
-            if (reader[i] != DBNull.Value)
-            {
-
-                a.LetzeEntnahme = Convert.ToDateTime(reader[i++]);
-            }
-            else
-            { i++; }
+            a.ArtikelNr = Convert.ToString(convertToNull(reader[i++]));
+            a.ArtikelGruppe = Convert.ToInt32(convertToNull(reader[i++]));
+            a.Bezeichnung = Convert.ToString(convertToNull(reader[i++]));
+            a.Bestand = Convert.ToInt16(convertToNull(reader[i++]));
+            a.Meldebestand = Convert.ToInt16(convertToNull(reader[i++]));
+            a.Verpackung = Convert.ToInt32(convertToNull(reader[i++]));
+            a.VkPreis = Convert.ToDecimal(convertToNull(reader[i++]));
+            a.LetzeEntnahme = Convert.ToDateTime(convertToNull(reader[i++]));
             
             return a;
         }
+
+        private object convertToNull(object v)
+        {
+            if (v.Equals(DBNull.Value))
+            {
+                return null;
+            }
+            return v;
+        }
+
+        private void buttonNew_Click(object sender, EventArgs e)
+        {
+            CreateArticle ca = new CreateArticle(con);
+            ca.ShowDialog(); // Modal / ca.Show() nicht modal
+        }
+
+
     }
 }

@@ -34,6 +34,7 @@
             this.listBoxAusgabe = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxGruppe = new System.Windows.Forms.TextBox();
+            this.buttonNew = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // buttonConn
@@ -92,11 +93,23 @@
             this.textBoxGruppe.Size = new System.Drawing.Size(128, 20);
             this.textBoxGruppe.TabIndex = 5;
             // 
+            // buttonNew
+            // 
+            this.buttonNew.Enabled = false;
+            this.buttonNew.Location = new System.Drawing.Point(79, 392);
+            this.buttonNew.Name = "buttonNew";
+            this.buttonNew.Size = new System.Drawing.Size(91, 23);
+            this.buttonNew.TabIndex = 6;
+            this.buttonNew.Text = "Neuer Artikel";
+            this.buttonNew.UseVisualStyleBackColor = true;
+            this.buttonNew.Click += new System.EventHandler(this.buttonNew_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(260, 365);
+            this.ClientSize = new System.Drawing.Size(266, 528);
+            this.Controls.Add(this.buttonNew);
             this.Controls.Add(this.textBoxGruppe);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listBoxAusgabe);
@@ -118,6 +131,7 @@
         private System.Windows.Forms.ListBox listBoxAusgabe;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxGruppe;
+        private System.Windows.Forms.Button buttonNew;
     }
 }
 

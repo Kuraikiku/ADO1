@@ -9,7 +9,7 @@ namespace ado
     class Artikel
     {
         public int ArtikelOid { get; set; }
-        public int ArtikelNr { get; set; }
+        public String ArtikelNr { get; set; }
         public int ArtikelGruppe { get; set; }
         public String Bezeichnung { get; set; }
         public Int16 Bestand { get; set; }
@@ -21,6 +21,11 @@ namespace ado
         public override string ToString()
         {
             return ArtikelOid + " - " +Bezeichnung;
+        }
+
+        public String Display
+        {
+            get { return this.ArtikelNr + ": " + this.VkPreis.ToString(); }
         }
     }
 }
