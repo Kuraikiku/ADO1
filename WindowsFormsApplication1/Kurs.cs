@@ -12,7 +12,13 @@ namespace WindowsFormsApplication1
         int count = 0;
         DateTime datum;
         int id = 0;
-        List<Teilnehmer> listTeilnehmer = null;
+        protected List<Teilnehmer> listTeilnehmer = null;
+
+        public Kurs()
+        {
+            listTeilnehmer = new List<Teilnehmer>();
+
+        }
 
         public string Bezeichnung
         {

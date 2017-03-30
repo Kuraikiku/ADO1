@@ -68,6 +68,12 @@ namespace WindowsFormsApplication1
                 vieleT.Add(t);
                 
             }
+
+            cmd = con.CreateCommand();
+            cmd.CommandText = "Select * from tTeilnehmer";
+            cmd.CommandType = CommandType.Text;
+            reader = cmd.ExecuteReader();
+
             comboBoxTeilnehmer.DataSource = vieleT;
             comboBoxTeilnehmer.DisplayMember = "Display2";
             comboBoxKurse.DataSource = vieleKurse;
