@@ -16,10 +16,11 @@ namespace ado
         OleDbConnection con = null;
         OleDbCommand cmd = null;
         OleDbDataReader reader = null;
+        List<Artikel> listArtikel = null;
         public Form1()
         {
-
             InitializeComponent();
+            listArtikel = new List<Artikel>();
         }
 
         private void buttonConn_Click(object sender, EventArgs e)
@@ -46,7 +47,6 @@ namespace ado
         {
             cmd = con.CreateCommand();
             cmd.Parameters.Add("AGR", OleDbType.Integer);
-            listBoxAusgabe.Items.Clear();
             cmd.CommandText = "Select * from tArtikel where ArtikelGruppe = AGR";
             cmd.CommandType = CommandType.Text;
             try
@@ -65,13 +65,19 @@ namespace ado
 
         private void buttonAuslesen_Click(object sender, EventArgs e)
         {
-            while(reader.Read())
+            listBoxAusgabe.DataSource = null;
+            listBoxAusgabe.Items.Clear();
+            while (reader.Read()) 
             {
-
-                listBoxAusgabe.Items.Add(mkArtikelObject(reader));
-                listBoxAusgabe.DisplayMember = "Display";
+                
+                listArtikel.Add(mkArtikelObject(reader));
+                //listBoxAusgabe.Items.Add(mkArtikelObject(reader));
+                //listBoxAusgabe.DisplayMember = "Display";
                 //listBoxAusgabe.Items.Add(reader["ArtikelOid"].ToString() + " °^° " + reader["Bezeichnung"].ToString());
             }
+            reader.Close();
+            listBoxAusgabe.DataSource = listArtikel;
+            listBoxAusgabe.DisplayMember = "Display";
         }
 
         private Artikel mkArtikelObject(OleDbDataReader reader)
@@ -105,6 +111,10 @@ namespace ado
         {
             CreateArticle ca = new CreateArticle(con);
             ca.ShowDialog(); // Modal / ca.Show() nicht modal
+            if (ca.NewArtikel != null)
+            {
+                listArtikel.Add(ca.NewArtikel);
+            }
         }
 
 
